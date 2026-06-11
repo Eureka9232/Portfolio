@@ -1,16 +1,23 @@
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="font-bold text-xl">Роман</div>
-        <nav className="hidden md:flex space-x-6 font-medium text-sm">
-          <a href="#about" className="hover:text-blue-600 text-xl font-bold">О мне</a>
-          <a href="#skills" className="hover:text-blue-600 text-xl font-bold">Навыки</a>
-          <a href="#projects" className="hover:text-blue-600 text-xl font-bold">Проекты</a>
-          <a href="#contacts" className="hover:text-blue-600 text-xl font-bold">Контакты</a>
+    <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/70 backdrop-blur-md transition-all">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
+        {/* Логотип */}
+        <div className="text-xl font-bold tracking-tight text-gray-900 selection:bg-blue-500">
+          Роман
+        </div>
+
+        {/* Навигация */}
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+          <a href="#about" className="transition-colors hover:text-blue-600">Обо мне</a>
+          <a href="#skills" className="transition-colors hover:text-blue-600">Навыки</a>
+          <a href="#projects" className="transition-colors hover:text-blue-600">Проекты</a>
+          <a href="#contacts" className="transition-colors hover:text-blue-600">Контакты</a>
         </nav>
-        <button className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 ">
-          <p className="text-xl font-bold">Связь</p>
+
+        {/* Кнопка действия */}
+        <button className="rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-blue-700 hover:shadow active:scale-98">
+          Связаться
         </button>
       </div>
     </header>

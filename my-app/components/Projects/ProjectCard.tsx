@@ -16,38 +16,56 @@ export default function ProjectCard({
   description,
   tools,
 }: ProjectCardProps) {
-
   const [showTools, setShowTools] = useState(false);
 
   return (
-    <div className="overflow-hidden rounded-xl border bg-white shadow-sm flex flex-col">
-      <div className="w-full bg-slate-200 flex items-center justify-center text-slate-400 text-sm  text-center">
+    <div className="group overflow-hidden rounded-2xl border border-slate-200/60 bg-white shadow-xl shadow-blue-600/[0.01] hover:shadow-blue-600/5 hover:border-blue-600/20 flex flex-col hover:-translate-y-1.5 transition-all duration-300 min-h-[460px]">
+      
+      {/* Контейнер для 3D-рендера без лишних серых рамок */}
+      <div className="relative aspect-video w-full overflow-hidden bg-slate-50 border-b border-slate-100">
         <Image
-            src={imagePlaceholder}
-            width={1000}
-            height={1000}
-            alt= "Avatar"
-            className="w-full h-full block p-2 rounded-2xl"
+          src={imagePlaceholder}
+          alt={title}
+          width={1000}
+          height={1000}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
         />
       </div>
       
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-semibold mb-2 text-slate-800">{title}</h3>
-        <p className="text-slate-600 text-sm mb-4 flex-grow">{description}</p>
+      {/* Контентная часть */}
+      <div className="p-5 flex flex-col flex-grow">
+        <h3 className="text-xl font-extrabold mb-2 text-slate-900 group-hover:text-blue-600 transition-colors leading-snug">
+          {title}
+        </h3>
+        <p className="text-slate-500 font-medium text-sm mb-6 flex-grow leading-relaxed">
+          {description}
+        </p>
         
+        {/* Интерактивная зона инструментов */}
         <div className="mt-auto pt-4 border-t border-slate-100">
           <button 
             onClick={() => setShowTools(!showTools)}
-            className="text-sm font-medium text-blue-600 hover:text-blue-700 focus:outline-none"
+            className="text-sm font-bold text-blue-600 hover:text-blue-700 focus:outline-none flex items-center gap-1.5 transition-colors"
           >
-            {showTools ? 'Скрыть инструменты' : 'Инструменты'}
+            <span>{showTools ? 'Скрыть инструменты' : 'Инструменты'}</span>
+            {/* Плавный маркер-стрелочка */}
+            <svg 
+              className={`w-4 h-4 transition-transform duration-200 ${showTools ? 'rotate-180' : ''}`} 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor" 
+              strokeWidth={2.5}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
+
           {showTools && (
-            <div className="mt-3 flex flex-wrap gap-1.5">
+            <div className="mt-3 flex flex-wrap gap-2">
               {tools.map((tool, index) => (
                 <span 
                   key={index}
-                  className="bg-slate-100 text-slate-600 text-xs px-2.5 py-1 rounded border border-slate-200"
+                  className="bg-slate-50 text-slate-700 text-xs px-3 py-1.5 rounded-xl font-bold border border-slate-200/60"
                 >
                   {tool}
                 </span>
